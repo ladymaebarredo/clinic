@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function StudentsTable({ students }) {
   return (
     <div className="overflow-x-auto">
@@ -12,6 +14,7 @@ export function StudentsTable({ students }) {
             <th className="py-2 px-4 text-left text-gray-600">Year Level</th>
             <th className="py-2 px-4 text-left text-gray-600">Student ID</th>
             <th className="py-2 px-4 text-left text-gray-600">Program</th>
+            <th className="py-2 px-4 text-left text-gray-600">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -25,6 +28,14 @@ export function StudentsTable({ students }) {
               <td className="py-2 px-4">{student.yearLevel}</td>
               <td className="py-2 px-4">{student.studentId}</td>
               <td className="py-2 px-4">{student.program}</td>
+              <td>
+                <Link
+                  to={`/dashboard/profile?id=${student.id}`}
+                  className="text-red-950 hover:underline"
+                >
+                  View
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -32,7 +43,7 @@ export function StudentsTable({ students }) {
     </div>
   );
 }
-// EmployeesTable.js
+
 export function EmployeesTable({ employees }) {
   return (
     <div className="overflow-x-auto">
@@ -46,6 +57,7 @@ export function EmployeesTable({ employees }) {
             <th className="py-2 px-4 text-left text-gray-600">Employee Type</th>
             <th className="py-2 px-4 text-left text-gray-600">Assignment</th>
             <th className="py-2 px-4 text-left text-gray-600">Employee ID</th>
+            <th className="py-2 px-4 text-left text-gray-600">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -58,6 +70,14 @@ export function EmployeesTable({ employees }) {
               <td className="py-2 px-4">{employee.employeeType}</td>
               <td className="py-2 px-4">{employee.assignment}</td>
               <td className="py-2 px-4">{employee.employeeId}</td>
+              <td>
+                <Link
+                  to={`/dashboard/profile?id=${employee.id}`}
+                  className="text-red-950 hover:underline"
+                >
+                  View
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -78,6 +98,7 @@ export function WorkersTable({ workers }) {
             <th className="py-2 px-4 text-left text-gray-600">Last Name</th>
             <th className="py-2 px-4 text-left text-gray-600">Worker Type</th>
             <th className="py-2 px-4 text-left text-gray-600">Worker ID</th>
+            <th className="py-2 px-4 text-left text-gray-600">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -89,6 +110,14 @@ export function WorkersTable({ workers }) {
               <td className="py-2 px-4">{worker.lastname}</td>
               <td className="py-2 px-4">{worker.workerType}</td>
               <td className="py-2 px-4">{worker.workerId}</td>
+              <td>
+                <Link
+                  to={`/dashboard/profile?id=${worker.id}`}
+                  className="text-red-950 hover:underline"
+                >
+                  View
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>
