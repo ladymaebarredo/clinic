@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../utils/user";
+import { Link } from "react-router-dom";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -89,6 +90,12 @@ export default function RegisterPage() {
           >
             {loading ? "Registering..." : "Register"}
           </button>
+          <div className="flex gap-2 text-white">
+            <p>Already have an account?</p>
+            <Link to="/login" className="hover:underline">
+              Login
+            </Link>
+          </div>
           {error && <p className="text-red-400 mt-2">{error}</p>}
         </form>
       </section>

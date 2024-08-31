@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   return (
@@ -13,7 +14,7 @@ export default function HomePage() {
           <a href="#features">Features</a>
           <a href="#contact">Contact</a>
           <button className="bg-white px-5 py-2 rounded-md text-red-800">
-            <a href="/login">Login</a>
+            <Link to="/login" />
           </button>
         </div>
       </nav>
