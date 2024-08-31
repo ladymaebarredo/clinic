@@ -3,7 +3,7 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { auth, db } from "./firebase";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, getDocs, collection } from "firebase/firestore";
 
 // Login with email and password
 export const login = async (email, password) => {
@@ -18,14 +18,35 @@ export const login = async (email, password) => {
 export const getUser = async (uid) => {
   try {
     const userDoc = await getDoc(doc(db, "users", uid));
-    const userData = {
-      id: userDoc.id,
-      data: userDoc.data(),
-    };
-
-    return userData;
+    // Check if the document exists
+    if (userDoc.exists()) {
+      const userData = {
+        id: userDoc.id,
+        data: userDoc.data(),
+      };
+      return userData;
+    } else {
+      // Document does not exist
+      return null;
+    }
   } catch (e) {
+    // Handle any errors
+    console.error("Error fetching user:", e);
     return null;
+  }
+};
+
+export const getUsersData = async (collectionName) => {
+  try {
+    const querySnapshot = await getDocs(collection(db, collectionName));
+    const usersData = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    return usersData;
+  } catch (e) {
+    console.error("Error fetching users data:", e);
+    return [];
   }
 };
 

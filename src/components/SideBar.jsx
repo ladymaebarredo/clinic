@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { adminLinks, links } from "../utils/globals";
 import { UserButton } from "./UserButton";
 import { SignoutButton } from "./SignoutButton";
-import { ChevronLeftCircle, ChevronRightCircle } from "lucide-react";
+import { ChevronLeftCircle, ChevronRightCircle, User2Icon } from "lucide-react";
 import { useUser } from "../providers/UserProvider";
 
 export function SideBar() {
@@ -51,6 +51,19 @@ export function SideBar() {
               </Link>
             </div>
           ))}
+          <div className="p-5">
+            <Link
+              to={`/dashboard/profile?id=${user.id}`}
+              className={`hover:bg-white hover:text-red-950 transition-all flex gap-3 p-2 rounded-full ${
+                location.pathname == "/dashboard/profile"
+                  ? "font-bold"
+                  : "text-white/80"
+              }`}
+            >
+              <User2Icon />
+              <p>Profile</p>
+            </Link>
+          </div>
         </div>
         {user.data.role == "WORKER" && (
           <div className="flex flex-col">

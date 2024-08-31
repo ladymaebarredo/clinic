@@ -10,7 +10,6 @@ import {
 
 export const links = [
   { tag: "Dashboard", href: "/dashboard", icon: ChartAreaIcon },
-  { tag: "Profile", href: "/dashboard/profile", icon: User2Icon },
   { tag: "Notifications", href: "/dashboard/notifications", icon: BellIcon },
   { tag: "Appointments", href: "/dashboard/appointments", icon: BookAIcon },
   { tag: "Certificate", href: "/dashboard/certificate", icon: Paperclip },
