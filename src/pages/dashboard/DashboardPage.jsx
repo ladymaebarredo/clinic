@@ -5,7 +5,7 @@ export default function DashboardPage() {
   return (
     <div>
       <h1 className="mb-10 font-bold">Dashboard</h1>
-      <pre className="text-2xl">{JSON.stringify(user, null, 2)}</pre>
+      <pre>{JSON.stringify(user, null, 2)}</pre>
     </div>
   );
 }

@@ -9,7 +9,7 @@ export default function DashboardLayout() {
     <>
       <Toaster position="top-right" reverseOrder={false} />
       <UserProvider>
-        <main className="h-screen flex">
+        <main className="h-screen flex overflow-hidden">
           <SideBar />
           <section className="flex-auto p-10 max-h-screen overflow-y-auto">
             <Outlet />

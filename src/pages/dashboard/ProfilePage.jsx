@@ -191,25 +191,23 @@ function EmployeeProfile({ userData, user }) {
 }
 function WorkerProfile({ userData, user }) {
   return (
-    <div className="container mx-auto p-4">
-      <div className="bg-white border border-gray-200 rounded-lg shadow-md p-6">
-        <div className="flex items-center mb-6">
-          {/* Avatar */}
+    <div className="container mx-auto">
+      <div className="bg-white border border-gray-200 rounded-lg shadow-md p-2">
+        <div className="flex items-center mb-6 flex-col md:flex-row text-center md:text-left">
           <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-4xl font-bold">
             {userData.firstname[0]}
             {userData.lastname[0]}
           </div>
           <div className="ml-6">
-            <h1 className="text-3xl font-bold">
-              {userData.firstname} {userData.middlename || ""}{" "}
-              {userData.lastname}
+            <h1 className="text-2xl font-bold">
+              {userData.firstname} {userData.middlename} {userData.lastname}
             </h1>
             <p className="text-lg text-gray-600">{userData.workerType}</p>
           </div>
         </div>
 
         {/* Account Details */}
-        <div className="mb-6">
+        <div className="mb-6 overflow-hidden">
           <h2 className="text-xl font-semibold mb-2">Account Details</h2>
           <div className="bg-gray-100 p-4 rounded-lg border border-gray-200">
             <p>
