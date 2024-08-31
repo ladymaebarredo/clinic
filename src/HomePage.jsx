@@ -40,7 +40,7 @@ export default function HomePage() {
         id="home"
         className="h-screen bg-red-100 flex flex-col justify-center items-center text-center"
       >
-        <div className="p-10 max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto p-4">
           <h1 className="text-5xl font-extrabold text-red-950 mb-4">
             School Clinic Management Information System
           </h1>
