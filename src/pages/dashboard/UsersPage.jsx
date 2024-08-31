@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getUsersData } from "../../utils/user";
+import { Users, User, Briefcase, HardHat } from "lucide-react"; // Import icons
+
 import {
   EmployeesTable,
   StudentsTable,
@@ -15,7 +17,6 @@ export default function UsersPage() {
   const [loadingEmployees, setLoadingEmployees] = useState(true);
   const [loadingWorkers, setLoadingWorkers] = useState(true);
 
-  // Function to fetch students
   const fetchStudents = async () => {
     try {
       const data = await getUsersData("students");
@@ -27,7 +28,6 @@ export default function UsersPage() {
     }
   };
 
-  // Function to fetch employees
   const fetchEmployees = async () => {
     try {
       const data = await getUsersData("employees");
@@ -39,7 +39,6 @@ export default function UsersPage() {
     }
   };
 
-  // Function to fetch workers
   const fetchWorkers = async () => {
     try {
       const data = await getUsersData("workers");
@@ -58,18 +57,43 @@ export default function UsersPage() {
   }, []);
 
   return (
-    <div className="p-4 space-y-8">
-      <section>
-        <h1 className="font-semibold mb-4">Students</h1>
-        <StudentsTable students={students} />
+    <div className="p-6 bg-gray-100 min-h-screen">
+      <h1 className="text-3xl font-bold text-gray-800 mb-8">Users Overview</h1>
+
+      <section className="bg-white p-6 rounded-lg shadow-md mb-8">
+        <div className="flex items-center mb-4">
+          <Users className="w-8 h-8 text-blue-600 mr-4" />
+          <h2 className="text-2xl font-semibold text-gray-800">Students</h2>
+        </div>
+        {loadingStudents ? (
+          <p>Loading students...</p>
+        ) : (
+          <StudentsTable students={students} />
+        )}
       </section>
-      <section>
-        <h1 className="font-semibold mb-4">Employees</h1>
-        <EmployeesTable employees={employees} />
+
+      <section className="bg-white p-6 rounded-lg shadow-md mb-8">
+        <div className="flex items-center mb-4">
+          <User className="w-8 h-8 text-green-600 mr-4" />
+          <h2 className="text-2xl font-semibold text-gray-800">Employees</h2>
+        </div>
+        {loadingEmployees ? (
+          <p>Loading employees...</p>
+        ) : (
+          <EmployeesTable employees={employees} />
+        )}
       </section>
-      <section>
-        <h1 className="font-semibold mb-4">Workers</h1>
-        <WorkersTable workers={workers} />
+
+      <section className="bg-white p-6 rounded-lg shadow-md">
+        <div className="flex items-center mb-4">
+          <HardHat className="w-8 h-8 text-yellow-600 mr-4" />
+          <h2 className="text-2xl font-semibold text-gray-800">Workers</h2>
+        </div>
+        {loadingWorkers ? (
+          <p>Loading workers...</p>
+        ) : (
+          <WorkersTable workers={workers} />
+        )}
       </section>
     </div>
   );

@@ -11,7 +11,7 @@ export default function DashboardLayout() {
       <UserProvider>
         <main className="h-screen flex overflow-hidden">
           <SideBar />
-          <section className="flex-auto p-10 max-h-screen overflow-y-auto">
+          <section className="flex-auto p-10 max-h-screen overflow-y-auto bg-gray-100">
             <Outlet />
           </section>
         </main>

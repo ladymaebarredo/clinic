@@ -6,7 +6,6 @@ export function StudentsTable({ students }) {
       <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
         <thead>
           <tr className="bg-gray-100 border-b">
-            <th className="py-2 px-4 text-left text-gray-600">ID</th>
             <th className="py-2 px-4 text-left text-gray-600">First Name</th>
             <th className="py-2 px-4 text-left text-gray-600">Middle Name</th>
             <th className="py-2 px-4 text-left text-gray-600">Last Name</th>
@@ -20,7 +19,6 @@ export function StudentsTable({ students }) {
         <tbody>
           {students.map((student) => (
             <tr key={student.id} className="border-b hover:bg-gray-50">
-              <td className="py-2 px-4">{student.id}</td>
               <td className="py-2 px-4">{student.firstname}</td>
               <td className="py-2 px-4">{student.middlename}</td>
               <td className="py-2 px-4">{student.lastname}</td>
@@ -50,7 +48,6 @@ export function EmployeesTable({ employees }) {
       <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
         <thead>
           <tr className="bg-gray-100 border-b">
-            <th className="py-2 px-4 text-left text-gray-600">ID</th>
             <th className="py-2 px-4 text-left text-gray-600">First Name</th>
             <th className="py-2 px-4 text-left text-gray-600">Middle Name</th>
             <th className="py-2 px-4 text-left text-gray-600">Last Name</th>
@@ -63,7 +60,6 @@ export function EmployeesTable({ employees }) {
         <tbody>
           {employees.map((employee) => (
             <tr key={employee.id} className="border-b hover:bg-gray-50">
-              <td className="py-2 px-4">{employee.id}</td>
               <td className="py-2 px-4">{employee.firstname}</td>
               <td className="py-2 px-4">{employee.middlename}</td>
               <td className="py-2 px-4">{employee.lastname}</td>
@@ -92,7 +88,6 @@ export function WorkersTable({ workers }) {
       <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
         <thead>
           <tr className="bg-gray-100 border-b">
-            <th className="py-2 px-4 text-left text-gray-600">ID</th>
             <th className="py-2 px-4 text-left text-gray-600">First Name</th>
             <th className="py-2 px-4 text-left text-gray-600">Middle Name</th>
             <th className="py-2 px-4 text-left text-gray-600">Last Name</th>
@@ -104,7 +99,6 @@ export function WorkersTable({ workers }) {
         <tbody>
           {workers.map((worker) => (
             <tr key={worker.id} className="border-b hover:bg-gray-50">
-              <td className="py-2 px-4">{worker.id}</td>
               <td className="py-2 px-4">{worker.firstname}</td>
               <td className="py-2 px-4">{worker.middlename}</td>
               <td className="py-2 px-4">{worker.lastname}</td>

@@ -3,6 +3,7 @@ import { useUser } from "../providers/UserProvider";
 import { getWorkersByType } from "../utils/worker";
 import { createAppointment } from "../utils/appointment";
 import toast from "react-hot-toast";
+import { createNotification } from "../utils/notifications";
 
 export function CreateAppointmentModal({ workerType, onClose, revalidate }) {
   const [workers, setWorkers] = useState([]);
@@ -34,9 +35,14 @@ export function CreateAppointmentModal({ workerType, onClose, revalidate }) {
         userData.id
       );
       if (res.success) {
+        revalidate();
         onClose();
         toast.success("Appointment Created Successfully!");
-        revalidate();
+        await createNotification(
+          userData.id,
+          workerId,
+          `${userData.lastname} requested an appointment.`
+        );
       } else {
         toast.error(res.message);
         setError(res.message);

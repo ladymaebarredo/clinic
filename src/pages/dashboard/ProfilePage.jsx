@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useUser } from "../../providers/UserProvider";
+import { Mail, User, Calendar, Briefcase, Tag, FileText } from "lucide-react"; // Import icons
 import { getUserData, getUser } from "../../utils/user";
 import { useSearchParams } from "react-router-dom";
 
@@ -56,16 +56,15 @@ export default function ProfilePage() {
 
 function StudentProfile({ userData, user }) {
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-6">
       <div className="bg-white border border-gray-200 rounded-lg shadow-md p-6">
-        <div className="flex items-center mb-6">
-          {/* Avatar */}
+        <div className="flex flex-col md:flex-row items-center mb-8 text-center md:text-left">
           <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-4xl font-bold">
             {userData.firstname[0]}
             {userData.lastname[0]}
           </div>
           <div className="ml-6">
-            <h1 className="text-3xl font-bold">
+            <h1 className="text-3xl font-bold text-gray-800">
               {userData.firstname} {userData.middlename || ""}{" "}
               {userData.lastname}
             </h1>
@@ -75,23 +74,27 @@ function StudentProfile({ userData, user }) {
         </div>
 
         {/* Account Details */}
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">Account Details</h2>
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold mb-4 text-gray-800 flex items-center space-x-2">
+            <User className="text-blue-500 w-6 h-6" />
+            <span>Account Details</span>
+          </h2>
           <div className="bg-gray-100 p-4 rounded-lg border border-gray-200">
-            <p>
-              <span className="font-semibold">User ID:</span> {user.id}
-            </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <Mail className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Email:</span> {user.data.email}
             </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <FileText className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Onboarded:</span>{" "}
               {user.data.onboarded ? "Yes" : "No"}
             </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <User className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Role:</span> {user.data.role}
             </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <Calendar className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Created At:</span>{" "}
               {new Date(user.data.createdAt).toLocaleDateString()}
             </p>
@@ -100,20 +103,27 @@ function StudentProfile({ userData, user }) {
 
         {/* Academic Details */}
         <div>
-          <h2 className="text-xl font-semibold mb-2">Academic Details</h2>
+          <h2 className="text-xl font-semibold mb-4 text-gray-800 flex items-center space-x-2">
+            <FileText className="text-green-500 w-6 h-6" />
+            <span>Academic Details</span>
+          </h2>
           <div className="bg-gray-100 p-4 rounded-lg border border-gray-200">
-            <p>
+            <p className="flex items-center space-x-2">
+              <User className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Student ID:</span>{" "}
               {userData.studentId}
             </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <FileText className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Program:</span> {userData.program}
             </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <FileText className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Year Level:</span>{" "}
               {userData.yearLevel}
             </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <FileText className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Department:</span>{" "}
               {userData.department}
             </p>
@@ -125,16 +135,15 @@ function StudentProfile({ userData, user }) {
 }
 function EmployeeProfile({ userData, user }) {
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-6">
       <div className="bg-white border border-gray-200 rounded-lg shadow-md p-6">
-        <div className="flex items-center mb-6">
-          {/* Avatar */}
+        <div className="flex flex-col md:flex-row items-center mb-8 text-center md:text-left">
           <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-4xl font-bold">
             {userData.firstname[0]}
             {userData.lastname[0]}
           </div>
           <div className="ml-6">
-            <h1 className="text-3xl font-bold">
+            <h1 className="text-3xl font-bold text-gray-800">
               {userData.firstname} {userData.middlename || ""}{" "}
               {userData.lastname}
             </h1>
@@ -144,27 +153,32 @@ function EmployeeProfile({ userData, user }) {
         </div>
 
         {/* Account Details */}
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">Account Details</h2>
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold mb-4 text-gray-800 flex items-center space-x-2">
+            <User className="text-blue-500 w-6 h-6" />
+            <span>Account Details</span>
+          </h2>
           <div className="bg-gray-100 p-4 rounded-lg border border-gray-200">
-            <p>
+            <p className="flex items-center space-x-2">
+              <Tag className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Employee ID:</span>{" "}
               {userData.employeeId}
             </p>
-            <p>
-              <span className="font-semibold">User ID:</span> {user.id}
-            </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <Mail className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Email:</span> {user.data.email}
             </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <Briefcase className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Onboarded:</span>{" "}
               {user.data.onboarded ? "Yes" : "No"}
             </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <User className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Role:</span> {user.data.role}
             </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <Calendar className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Created At:</span>{" "}
               {new Date(user.data.createdAt).toLocaleDateString()}
             </p>
@@ -173,13 +187,18 @@ function EmployeeProfile({ userData, user }) {
 
         {/* Additional Information */}
         <div>
-          <h2 className="text-xl font-semibold mb-2">Additional Information</h2>
+          <h2 className="text-xl font-semibold mb-4 text-gray-800 flex items-center space-x-2">
+            <Briefcase className="text-green-500 w-6 h-6" />
+            <span>Additional Information</span>
+          </h2>
           <div className="bg-gray-100 p-4 rounded-lg border border-gray-200">
-            <p>
+            <p className="flex items-center space-x-2">
+              <Tag className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Assignment:</span>{" "}
               {userData.assignment}
             </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <Briefcase className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Employee Type:</span>{" "}
               {userData.employeeType}
             </p>
@@ -191,39 +210,44 @@ function EmployeeProfile({ userData, user }) {
 }
 function WorkerProfile({ userData, user }) {
   return (
-    <div className="container mx-auto">
-      <div className="bg-white border border-gray-200 rounded-lg shadow-md p-2">
-        <div className="flex items-center mb-6 flex-col md:flex-row text-center md:text-left">
+    <div className="container mx-auto p-6">
+      <div className="bg-white border border-gray-200 rounded-lg shadow-md p-6">
+        <div className="flex flex-col md:flex-row items-center mb-8 text-center md:text-left">
           <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-4xl font-bold">
             {userData.firstname[0]}
             {userData.lastname[0]}
           </div>
           <div className="ml-6">
-            <h1 className="text-2xl font-bold">
-              {userData.firstname} {userData.middlename} {userData.lastname}
+            <h1 className="text-3xl font-bold text-gray-800">
+              {userData.firstname} {userData.middlename || ""}{" "}
+              {userData.lastname}
             </h1>
             <p className="text-lg text-gray-600">{userData.workerType}</p>
           </div>
         </div>
 
         {/* Account Details */}
-        <div className="mb-6 overflow-hidden">
-          <h2 className="text-xl font-semibold mb-2">Account Details</h2>
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold mb-4 text-gray-800 flex items-center space-x-2">
+            <User className="text-blue-500 w-6 h-6" />
+            <span>Account Details</span>
+          </h2>
           <div className="bg-gray-100 p-4 rounded-lg border border-gray-200">
-            <p>
-              <span className="font-semibold">User ID:</span> {user.id}
-            </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <Mail className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Email:</span> {user.data.email}
             </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <Tag className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Onboarded:</span>{" "}
               {user.data.onboarded ? "Yes" : "No"}
             </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <User className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Role:</span> {user.data.role}
             </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <Calendar className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Created At:</span>{" "}
               {new Date(user.data.createdAt).toLocaleDateString()}
             </p>
@@ -232,13 +256,18 @@ function WorkerProfile({ userData, user }) {
 
         {/* Additional Information */}
         <div>
-          <h2 className="text-xl font-semibold mb-2">Additional Information</h2>
+          <h2 className="text-xl font-semibold mb-4 text-gray-800 flex items-center space-x-2">
+            <Tag className="text-green-500 w-6 h-6" />
+            <span>Additional Information</span>
+          </h2>
           <div className="bg-gray-100 p-4 rounded-lg border border-gray-200">
-            <p>
+            <p className="flex items-center space-x-2">
+              <Tag className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Worker ID:</span>{" "}
               {userData.workerId}
             </p>
-            <p>
+            <p className="flex items-center space-x-2">
+              <Tag className="text-gray-500 w-5 h-5" />
               <span className="font-semibold">Worker Type:</span>{" "}
               {userData.workerType}
             </p>

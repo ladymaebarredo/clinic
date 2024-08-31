@@ -4,14 +4,24 @@ import { useUser } from "../../providers/UserProvider";
 import { getWorkerAppointments } from "../../utils/appointment";
 import { AppointmentCard } from "../../components/AppointmentCard";
 import { AppointmentsTable } from "../../components/AppointmentsTable";
+import {
+  Calendar,
+  PlusCircle,
+  AlertCircle,
+  User,
+  CheckCircle,
+  Clock,
+  XCircle,
+  BarChart,
+} from "lucide-react"; // Import icons
 
 export default function AppointmentsPage() {
   const { user } = useUser();
-  if (user.data.role === "WORKER") {
-    return <Worker user={user} />;
-  } else {
-    return <Appointee user={user} />;
-  }
+  return user.data.role === "WORKER" ? (
+    <Worker user={user} />
+  ) : (
+    <Appointee user={user} />
+  );
 }
 
 function Appointee({ user }) {
@@ -46,28 +56,36 @@ function Appointee({ user }) {
   );
 
   return (
-    <main>
-      <h1 className="font-semibold">Appointments</h1>
-      <section className="flex items-center gap-3 my-10">
+    <main className="p-6 space-y-8">
+      <h1 className="text-3xl font-semibold text-gray-800 flex items-center space-x-2">
+        <Calendar className="text-blue-500 w-8 h-8" />
+        <span>Appointments</span>
+      </h1>
+
+      <section className="flex items-center gap-4 my-6 flex-wrap">
         <button
-          className="bg-red-950 text-white p-2 rounded-lg"
+          className="bg-red-600 text-white p-3 rounded-lg flex items-center space-x-2 hover:bg-red-700 transition"
           onClick={toggleDentistApp}
         >
-          Create Dentist Appointment
+          <PlusCircle className="w-5 h-5" />
+          <span>Create Dentist Appointment</span>
         </button>
         <button
-          className="bg-red-950 text-white p-2 rounded-lg"
+          className="bg-red-600 text-white p-3 rounded-lg flex items-center space-x-2 hover:bg-red-700 transition"
           onClick={togglePhysicianApp}
         >
-          Create Physician Appointment
+          <PlusCircle className="w-5 h-5" />
+          <span>Create Physician Appointment</span>
         </button>
         <button
-          className="bg-red-950 text-white p-2 rounded-lg"
+          className="bg-red-600 text-white p-3 rounded-lg flex items-center space-x-2 hover:bg-red-700 transition"
           onClick={toggleNurseApp}
         >
-          Create Nurse Appointment
+          <PlusCircle className="w-5 h-5" />
+          <span>Create Nurse Appointment</span>
         </button>
       </section>
+
       {dentistApp && (
         <CreateAppointmentModal
           workerType="Dentist"
@@ -89,19 +107,26 @@ function Appointee({ user }) {
           revalidate={fetchAppointments}
         />
       )}
-      <section className="flex gap-4 flex-col">
-        <div className="w-[30rem]">
-          <h1>Active Appointment</h1>
+
+      <section className="space-y-6">
+        <div className="bg-white p-4 rounded-lg shadow-md">
+          <h2 className="text-xl font-semibold text-gray-800 flex items-center space-x-2">
+            <AlertCircle className="text-yellow-500 w-6 h-6" />
+            <span>Active Appointment</span>
+          </h2>
           {loading ? (
             <p>Loading...</p> // Loading indicator
           ) : activeAppointment ? (
             <AppointmentCard appointment={activeAppointment} />
           ) : (
-            <>You have no active appointment.</>
+            <p className="text-gray-600">You have no active appointment.</p>
           )}
         </div>
-        <div className="flex-1">
-          <h1>My Appointments</h1>
+        <div className="bg-white p-4 rounded-lg shadow-md">
+          <h2 className="text-xl font-semibold text-gray-800 flex items-center space-x-2">
+            <User className="text-green-500 w-6 h-6" />
+            <span>My Appointments</span>
+          </h2>
           {loading ? (
             <p>Loading...</p> // Loading indicator
           ) : (
@@ -132,14 +157,66 @@ function Worker({ user }) {
     fetchAppointments();
   }, [user.id]);
 
+  const totalAppointments = appointments.length;
+  const pendingAppointments = appointments.filter(
+    (appointment) => appointment.appointmentStatus === "Pending"
+  ).length;
+  const completedAppointments = appointments.filter(
+    (appointment) => appointment.appointmentStatus === "Completed"
+  ).length;
+
   return (
-    <main>
-      <h1 className="font-semibold mb-10">My Appointments</h1>
-      {loading ? (
-        <p>Loading...</p> // Loading indicator
-      ) : (
-        <AppointmentsTable appointments={appointments} />
-      )}
+    <main className="p-6 space-y-8">
+      <h1 className="text-3xl font-semibold text-gray-800 flex items-center space-x-2">
+        <Calendar className="text-blue-500 w-8 h-8" />
+        <span>Appointments</span>
+      </h1>
+
+      {/* Statistics Cards */}
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-between space-x-4">
+          <div className="flex items-center space-x-3">
+            <BarChart className="text-blue-500 w-8 h-8" />
+            <div>
+              <h2 className="text-lg font-semibold text-gray-800">
+                Total Appointments
+              </h2>
+              <p className="text-2xl font-bold">{totalAppointments}</p>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-between space-x-4">
+          <div className="flex items-center space-x-3">
+            <Clock className="text-yellow-500 w-8 h-8" />
+            <div>
+              <h2 className="text-lg font-semibold text-gray-800">
+                Pending Appointments
+              </h2>
+              <p className="text-2xl font-bold">{pendingAppointments}</p>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-between space-x-4">
+          <div className="flex items-center space-x-3">
+            <CheckCircle className="text-green-500 w-8 h-8" />
+            <div>
+              <h2 className="text-lg font-semibold text-gray-800">
+                Completed Appointments
+              </h2>
+              <p className="text-2xl font-bold">{completedAppointments}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Appointments Table */}
+      <div className="bg-white p-4 rounded-lg shadow-md">
+        {loading ? (
+          <p>Loading...</p> // Loading indicator
+        ) : (
+          <AppointmentsTable appointments={appointments} />
+        )}
+      </div>
     </main>
   );
 }

@@ -13,7 +13,9 @@ export function SideBar() {
 
   return (
     <>
-      {open && <div className="fixed h-screen z-30 w-screen bg-black/80"></div>}
+      {open && (
+        <div className="fixed h-screen md:hidden z-30 w-screen bg-black/80"></div>
+      )}
       <div
         className={` ${
           open
@@ -39,7 +41,7 @@ export function SideBar() {
         </div>
         <div className="flex flex-col">
           {links.map((link, i) => (
-            <div className="p-3" key={i}>
+            <div className="p-2" key={i}>
               <Link
                 to={link.href}
                 className={`hover:bg-white hover:text-red-950 transition-all flex gap-3 p-2 rounded-full ${
@@ -51,7 +53,7 @@ export function SideBar() {
               </Link>
             </div>
           ))}
-          <div className="p-3">
+          <div className="p-2">
             <Link
               to={`/dashboard/profile?id=${user.id}`}
               className={`hover:bg-white hover:text-red-950 transition-all flex gap-3 p-2 rounded-full ${
@@ -68,7 +70,7 @@ export function SideBar() {
         {user.data.role == "WORKER" && (
           <div className="flex flex-col">
             {adminLinks.map((link, i) => (
-              <div className="p-5" key={i}>
+              <div className="p-2" key={i}>
                 <Link
                   to={link.href}
                   className={`hover:bg-white hover:text-red-950 transition-all flex gap-3 p-2 rounded-full ${
