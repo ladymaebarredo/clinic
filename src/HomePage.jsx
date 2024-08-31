@@ -14,7 +14,7 @@ export default function HomePage() {
           <a href="#features">Features</a>
           <a href="#contact">Contact</a>
           <button className="bg-white px-5 py-2 rounded-md text-red-800">
-            <Link to="/login" />
+            <Link to="/login">Login</Link>
           </button>
         </div>
       </nav>
