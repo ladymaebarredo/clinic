@@ -21,7 +21,7 @@ export function SideBar() {
           open
             ? "absolute left-[280px] hover:p-2 z-50"
             : "hover:left-[-10px] absolute left-[-20px]"
-        } top-[350px] p-1 rounded-full bg-red-950 text-white transition-all duration-300 md:hidden cursor-pointer`}
+        } top-[290px] p-1 rounded-full bg-red-950 text-white transition-all duration-300 md:hidden cursor-pointer`}
         onClick={() => setOpen(!open)}
       >
         {!open ? (

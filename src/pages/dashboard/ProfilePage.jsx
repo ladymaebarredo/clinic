@@ -56,8 +56,8 @@ export default function ProfilePage() {
 
 function StudentProfile({ userData, user }) {
   return (
-    <div className="container mx-auto p-6">
-      <div className="bg-white border border-gray-200 rounded-lg shadow-md p-6">
+    <div className="container">
+      <div className="bg-white border border-gray-200 rounded-lg shadow-md pt-5 px-1">
         <div className="flex flex-col md:flex-row items-center mb-8 text-center md:text-left">
           <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-4xl font-bold">
             {userData.firstname[0]}
@@ -135,8 +135,8 @@ function StudentProfile({ userData, user }) {
 }
 function EmployeeProfile({ userData, user }) {
   return (
-    <div className="container mx-auto p-6">
-      <div className="bg-white border border-gray-200 rounded-lg shadow-md p-6">
+    <div className="container">
+      <div className="bg-white border border-gray-200 rounded-lg shadow-md pt-5 px-1">
         <div className="flex flex-col md:flex-row items-center mb-8 text-center md:text-left">
           <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-4xl font-bold">
             {userData.firstname[0]}
@@ -210,8 +210,8 @@ function EmployeeProfile({ userData, user }) {
 }
 function WorkerProfile({ userData, user }) {
   return (
-    <div className="container mx-auto p-6">
-      <div className="bg-white border border-gray-200 rounded-lg shadow-md p-6">
+    <div className="container">
+      <div className="bg-white border border-gray-200 rounded-lg shadow-md pt-5 px-1">
         <div className="flex flex-col md:flex-row items-center mb-8 text-center md:text-left">
           <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 text-4xl font-bold">
             {userData.firstname[0]}
