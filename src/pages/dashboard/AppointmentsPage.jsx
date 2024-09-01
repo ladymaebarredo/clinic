@@ -56,8 +56,8 @@ function Appointee({ user }) {
   );
 
   return (
-    <main className="p-6 space-y-8">
-      <h1 className="text-3xl font-semibold text-gray-800 flex items-center space-x-2">
+    <main className="space-y-8">
+      <h1 className="text-3xl font-semibold text-gray-800 flex items-center space-x-2 p-8">
         <Calendar className="text-blue-500 w-8 h-8" />
         <span>Appointments</span>
       </h1>
@@ -110,7 +110,7 @@ function Appointee({ user }) {
 
       <section className="space-y-6">
         <div className="bg-white p-4 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold text-gray-800 flex items-center space-x-2">
+          <h2 className="text-xl font-semibold text-gray-800 flex items-center space-x-2 mb-5">
             <AlertCircle className="text-yellow-500 w-6 h-6" />
             <span>Active Appointment</span>
           </h2>
@@ -123,7 +123,7 @@ function Appointee({ user }) {
           )}
         </div>
         <div className="bg-white p-4 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold text-gray-800 flex items-center space-x-2">
+          <h2 className="text-xl font-semibold text-gray-800 flex items-center space-x-2 mb-5">
             <User className="text-green-500 w-6 h-6" />
             <span>My Appointments</span>
           </h2>
@@ -166,8 +166,8 @@ function Worker({ user }) {
   ).length;
 
   return (
-    <main className="p-6 space-y-8">
-      <h1 className="text-3xl font-semibold text-gray-800 flex items-center space-x-2">
+    <main className="space-y-8">
+      <h1 className="text-3xl font-semibold text-gray-800 flex items-center space-x-2 p-8">
         <Calendar className="text-blue-500 w-8 h-8" />
         <span>Appointments</span>
       </h1>
