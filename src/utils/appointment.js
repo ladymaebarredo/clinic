@@ -1,8 +1,6 @@
 import { db } from "./firebase"; // Adjust this import to your Firebase config file
 import {
-  doc,
   collection,
-  collectionGroup,
   addDoc,
   getDocs,
   query,
@@ -10,6 +8,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
+// Create a new appointment directly in the "appointments" collection
 export const createAppointment = async (
   workerType,
   workerId,
@@ -17,13 +16,13 @@ export const createAppointment = async (
   userId
 ) => {
   try {
-    // Create a reference to the user's appointments document
-    const userAppointmentsRef = doc(db, "userAppointments", userId);
-    // Create a reference to the appointments subcollection within the user's document
-    const appointmentsRef = collection(userAppointmentsRef, "appointments");
-    // Check for existing "Pending" appointments
+    // Create a reference to the appointments collection
+    const appointmentsRef = collection(db, "appointments");
+
+    // Check for existing "Pending" appointments for the user
     const q = query(
       appointmentsRef,
+      where("userId", "==", userId),
       where("appointmentStatus", "==", "Pending")
     );
     const querySnapshot = await getDocs(q);
@@ -36,7 +35,7 @@ export const createAppointment = async (
       };
     }
 
-    // Add a new appointment document to the appointments subcollection
+    // Add a new appointment document to the appointments collection
     await addDoc(appointmentsRef, {
       workerType,
       workerId,
@@ -56,11 +55,12 @@ export const createAppointment = async (
   }
 };
 
+// Get all appointments for a specific worker
 export const getWorkerAppointments = async (typeId, type) => {
   try {
-    // Query across all userAppointments documents to find appointments for the specific worker
+    // Query the appointments collection for the specific worker
     const appointmentsQuery = query(
-      collectionGroup(db, "appointments"),
+      collection(db, "appointments"),
       where(type, "==", typeId)
     );
     // Execute the query
@@ -72,7 +72,7 @@ export const getWorkerAppointments = async (typeId, type) => {
     }));
     return appointments;
   } catch (error) {
-    console.error("Error fetching type's appointments:", error);
+    console.error("Error fetching worker's appointments:", error);
     return [];
   }
 };

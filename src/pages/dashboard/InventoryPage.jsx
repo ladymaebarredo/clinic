@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ItemModal } from "../../components/ItemModal";
 import { getItems } from "../../utils/inventory";
 import ItemsTable from "../../components/ItemsTable";
-import { Box } from "lucide-react";
+import { BaggageClaim, Box } from "lucide-react";
 
 export default function InventoryPage() {
   const [items, setItems] = useState([]);
@@ -26,7 +26,7 @@ export default function InventoryPage() {
   const toggleItemModal = (item) => setSelectedItem(item);
 
   return (
-    <main className="p-6 bg-gray-100 min-h-screen">
+    <main className="p-3 md:p-10 bg-gray-100 min-h-screen">
       {/* Item Modal Components */}
       {createItemModal && <ItemModal onClose={toggleCreateModal} />}
       {selectedItem && (
@@ -39,7 +39,10 @@ export default function InventoryPage() {
 
       {/* Page Header */}
       <header className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">Inventory</h1>
+        <h1 className="text-3xl font-semibold text-gray-800 flex items-center space-x-2">
+          <BaggageClaim className="text-blue-500 w-8 h-8" />
+          <span>Inventory</span>
+        </h1>
         <button
           className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
           onClick={toggleCreateModal}

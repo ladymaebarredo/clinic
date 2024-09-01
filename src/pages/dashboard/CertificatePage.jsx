@@ -2,7 +2,7 @@ import { FileText, Calendar, MessageSquare } from "lucide-react";
 
 export default function CertificatePage() {
   return (
-    <main>
+    <main className="md:p-10">
       <div className="w-full bg-white p-6 sm:p-8 rounded-lg shadow-md">
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 sm:mb-8">
           Certificate

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getUsersData } from "../../utils/user";
-import { Users, User, Briefcase, HardHat } from "lucide-react"; // Import icons
+import { Users, User, Briefcase, HardHat, UserSearch } from "lucide-react"; // Import icons
 
 import {
   EmployeesTable,
@@ -58,11 +58,13 @@ export default function UsersPage() {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold text-gray-800 mb-8">Users Overview</h1>
-
+      <h1 className="text-3xl font-semibold text-gray-800 flex items-center space-x-2 mb-10">
+        <UserSearch className="text-blue-500 w-8 h-8" />
+        <span>Users</span>
+      </h1>
       <section className="bg-white p-6 rounded-lg shadow-md mb-8">
         <div className="flex items-center mb-4">
-          <Users className="w-8 h-8 text-blue-600 mr-4" />
+          <Users className="w-8 h-8 text-red-600 mr-4" />
           <h2 className="text-2xl font-semibold text-gray-800">Students</h2>
         </div>
         {loadingStudents ? (

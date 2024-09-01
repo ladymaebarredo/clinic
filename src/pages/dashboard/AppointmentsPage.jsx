@@ -11,9 +11,9 @@ import {
   User,
   CheckCircle,
   Clock,
-  XCircle,
   BarChart,
-} from "lucide-react"; // Import icons
+  Loader2, // Add loader icon
+} from "lucide-react";
 
 export default function AppointmentsPage() {
   const { user } = useUser();
@@ -56,36 +56,67 @@ function Appointee({ user }) {
   );
 
   return (
-    <main className="space-y-8">
-      <h1 className="text-3xl font-semibold text-gray-800 flex items-center space-x-2 p-8">
-        <Calendar className="text-blue-500 w-8 h-8" />
-        <span>Appointments</span>
-      </h1>
+    <>
+      <main className="space-y-8 md:p-10 p-6">
+        <h1 className="text-3xl font-semibold text-gray-800 flex items-center space-x-2">
+          <Calendar className="text-blue-500 w-8 h-8" />
+          <span>Appointments</span>
+        </h1>
+        <section className="flex items-center gap-4 my-6 flex-wrap">
+          <button
+            className="bg-red-600 text-white p-3 rounded-lg flex items-center space-x-2 hover:bg-red-700 transition"
+            onClick={toggleDentistApp}
+          >
+            <PlusCircle className="w-5 h-5" />
+            <span>Create Dentist Appointment</span>
+          </button>
+          <button
+            className="bg-red-600 text-white p-3 rounded-lg flex items-center space-x-2 hover:bg-red-700 transition"
+            onClick={togglePhysicianApp}
+          >
+            <PlusCircle className="w-5 h-5" />
+            <span>Create Physician Appointment</span>
+          </button>
+          <button
+            className="bg-red-600 text-white p-3 rounded-lg flex items-center space-x-2 hover:bg-red-700 transition"
+            onClick={toggleNurseApp}
+          >
+            <PlusCircle className="w-5 h-5" />
+            <span>Create Nurse Appointment</span>
+          </button>
+        </section>
 
-      <section className="flex items-center gap-4 my-6 flex-wrap">
-        <button
-          className="bg-red-600 text-white p-3 rounded-lg flex items-center space-x-2 hover:bg-red-700 transition"
-          onClick={toggleDentistApp}
-        >
-          <PlusCircle className="w-5 h-5" />
-          <span>Create Dentist Appointment</span>
-        </button>
-        <button
-          className="bg-red-600 text-white p-3 rounded-lg flex items-center space-x-2 hover:bg-red-700 transition"
-          onClick={togglePhysicianApp}
-        >
-          <PlusCircle className="w-5 h-5" />
-          <span>Create Physician Appointment</span>
-        </button>
-        <button
-          className="bg-red-600 text-white p-3 rounded-lg flex items-center space-x-2 hover:bg-red-700 transition"
-          onClick={toggleNurseApp}
-        >
-          <PlusCircle className="w-5 h-5" />
-          <span>Create Nurse Appointment</span>
-        </button>
-      </section>
-
+        <section className="space-y-6">
+          <div className="bg-white p-4 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold text-gray-800 flex items-center space-x-2 mb-5">
+              <AlertCircle className="text-yellow-500 w-6 h-6" />
+              <span>Active Appointment</span>
+            </h2>
+            {loading ? (
+              <div className="flex items-center justify-center h-32">
+                <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
+              </div> // Loading indicator
+            ) : activeAppointment ? (
+              <AppointmentCard appointment={activeAppointment} />
+            ) : (
+              <p className="text-gray-600">You have no active appointment.</p>
+            )}
+          </div>
+          <div className="bg-white p-4 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold text-gray-800 flex items-center space-x-2 mb-5">
+              <User className="text-green-500 w-6 h-6" />
+              <span>My Appointments</span>
+            </h2>
+            {loading ? (
+              <div className="flex items-center justify-center h-32">
+                <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
+              </div> // Loading indicator
+            ) : (
+              <AppointmentsTable appointments={appointments} />
+            )}
+          </div>
+        </section>
+      </main>
       {dentistApp && (
         <CreateAppointmentModal
           workerType="Dentist"
@@ -107,34 +138,7 @@ function Appointee({ user }) {
           revalidate={fetchAppointments}
         />
       )}
-
-      <section className="space-y-6">
-        <div className="bg-white p-4 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold text-gray-800 flex items-center space-x-2 mb-5">
-            <AlertCircle className="text-yellow-500 w-6 h-6" />
-            <span>Active Appointment</span>
-          </h2>
-          {loading ? (
-            <p>Loading...</p> // Loading indicator
-          ) : activeAppointment ? (
-            <AppointmentCard appointment={activeAppointment} />
-          ) : (
-            <p className="text-gray-600">You have no active appointment.</p>
-          )}
-        </div>
-        <div className="bg-white p-4 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold text-gray-800 flex items-center space-x-2 mb-5">
-            <User className="text-green-500 w-6 h-6" />
-            <span>My Appointments</span>
-          </h2>
-          {loading ? (
-            <p>Loading...</p> // Loading indicator
-          ) : (
-            <AppointmentsTable appointments={appointments} />
-          )}
-        </div>
-      </section>
-    </main>
+    </>
   );
 }
 
@@ -166,8 +170,8 @@ function Worker({ user }) {
   ).length;
 
   return (
-    <main className="space-y-8">
-      <h1 className="text-3xl font-semibold text-gray-800 flex items-center space-x-2 p-8">
+    <main className="space-y-8 md:p-10 p-6">
+      <h1 className="text-3xl font-semibold text-gray-800 flex items-center space-x-2">
         <Calendar className="text-blue-500 w-8 h-8" />
         <span>Appointments</span>
       </h1>
@@ -212,7 +216,9 @@ function Worker({ user }) {
       {/* Appointments Table */}
       <div className="bg-white p-4 rounded-lg shadow-md">
         {loading ? (
-          <p>Loading...</p> // Loading indicator
+          <div className="flex items-center justify-center h-32">
+            <Loader2 className="w-8 h-8 text-blue-600 animate-spin" />
+          </div> // Loading indicator
         ) : (
           <AppointmentsTable appointments={appointments} />
         )}
